@@ -1,8 +1,7 @@
 from langdetect import detect, DetectorFactory
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 DetectorFactory.seed = 0
-translator = Translator()
 
 def detect_language(text):
     try:
@@ -12,7 +11,6 @@ def detect_language(text):
 
 def translate_text(text, dest_lang):
     try:
-        translated = translator.translate(text, dest=dest_lang)
-        return translated.text
+        return GoogleTranslator(target=dest_lang).translate(text)
     except Exception as e:
         return f"Error: {str(e)}"

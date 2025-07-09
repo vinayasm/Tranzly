@@ -1,37 +1,37 @@
 import streamlit as st
 from utils import detect_language, translate_text
 
+# ✅ Supported languages by deep-translator
 LANGUAGES = {
     'en': 'English',
     'hi': 'Hindi',
     'bn': 'Bengali',
-    'te': 'Telugu',
-    'mr': 'Marathi',
     'ta': 'Tamil',
-    'ur': 'Urdu',
-    'gu': 'Gujarati',
+    'te': 'Telugu',
     'kn': 'Kannada',
     'ml': 'Malayalam',
+    'gu': 'Gujarati',
+    'mr': 'Marathi',
     'pa': 'Punjabi',
+    'ur': 'Urdu',
     'fr': 'French',
     'de': 'German',
     'es': 'Spanish',
-    'zh-cn': 'Chinese (Simplified)',
-    'zh-tw': 'Chinese (Traditional)',
-    'ja': 'Japanese',
     'ko': 'Korean',
+    'ja': 'Japanese',
+    'zh-CN': 'Chinese (Simplified)',
     'ru': 'Russian',
-    'pt': 'Portuguese',
+    'ar': 'Arabic',
     'it': 'Italian'
 }
 
-# Reverse mapping for dropdown
+# Reverse lookup
 LANGUAGE_NAMES = sorted(LANGUAGES.values())
 LANGUAGE_CODES = {v: k for k, v in LANGUAGES.items()}
 
 st.set_page_config(page_title="Tranzly", layout="centered")
 
-# Centered UI header
+# 💫 Header
 st.markdown(
     """
     <div style='text-align: center;'>
@@ -45,14 +45,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Input box
+# 📝 Text input
 text_input = st.text_area("✏️ Enter text to detect and translate:", height=150)
 
-# Track detected language
+# 🧠 Session state for detected language
 if 'detected_code' not in st.session_state:
     st.session_state.detected_code = None
 
-# Detect Button
+# 🔍 Detect button
 if st.button("🔍 Detect Language"):
     if text_input.strip():
         code = detect_language(text_input)
@@ -60,13 +60,13 @@ if st.button("🔍 Detect Language"):
         lang_name = LANGUAGES.get(code, "Unknown Language")
         st.success(f"Detected Language: **{lang_name}** (`{code}`)")
     else:
-        st.warning("Please enter some text.")
+        st.warning("Please enter text.")
 
-# Dropdown for target language
+# 🌍 Language selection
 target_lang_name = st.selectbox("🌍 Translate to:", LANGUAGE_NAMES)
 target_lang_code = LANGUAGE_CODES[target_lang_name]
 
-# Translate Button
+# 🌐 Translate button
 if st.button("🌐 Translate"):
     if text_input.strip():
         result = translate_text(text_input, target_lang_code)
