@@ -37,12 +37,12 @@ It uses **langdetect** for language detection and **deep-translator** (Google Tr
 ## 📦 Installation
 
 1. **Clone the repository**
-    git clone https://github.com/vinayasm/Tranzly.git
-    cd Tranzly
+   - git clone https://github.com/vinayasm/Tranzly.git
+   - cd Tranzly
 2. **Install dependencies**
-    pip install -r requirements.txt
+   - pip install -r requirements.txt
 3. **Run the app**
-    streamlit run app.py
+   - streamlit run app.py
 
 ---
 
